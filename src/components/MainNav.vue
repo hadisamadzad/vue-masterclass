@@ -13,10 +13,11 @@
               v-for="menuItem in menuItems"
               :key="menuItem"
               class="h-full ml-9 first:ml-0"
+              data-test="main-nav-menu-item"
             >
-              <a href="" class="flex items-center h-full py-2.5">{{
-                menuItem
-              }}</a>
+              <a href="" class="flex items-center h-full py-2.5">
+                {{ menuItem }}
+              </a>
             </li>
           </ul>
         </nav>
