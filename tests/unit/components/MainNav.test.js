@@ -27,13 +27,7 @@ describe("MainNav", () => {
 
   describe("When user is logged out", () => {
     it("prompt user to sing in", () => {
-      const wrapper = mount(MainNav, {
-        data() {
-          return {
-            isLoggedIn: false,
-          };
-        },
-      });
+      const wrapper = mount(MainNav);
 
       const loginButton = wrapper.find("[data-test='action-button']");
       const profileImage = wrapper.find("[data-test='profile-image']");
@@ -44,19 +38,16 @@ describe("MainNav", () => {
   });
 
   describe("When user is logged in", () => {
-    it("prompt user to sing in", () => {
-      const wrapper = mount(MainNav, {
-        data() {
-          return {
-            isLoggedIn: true,
-          };
-        },
-      });
+    it("prompt user to sing in", async () => {
+      const wrapper = mount(MainNav);
+
+      let profileImage = wrapper.find("[data-test='profile-image']");
+      expect(profileImage.exists()).toBe(false);
 
       const loginButton = wrapper.find("[data-test='action-button']");
-      const profileImage = wrapper.find("[data-test='profile-image']");
+      await loginButton.trigger("click");
 
-      expect(loginButton.exists()).toBe(false);
+      profileImage = wrapper.find("[data-test='profile-image']");
       expect(profileImage.exists()).toBe(true);
     });
   });
