@@ -24,4 +24,40 @@ describe("MainNav", () => {
       "Jobs",
     ]);
   });
+
+  describe("When user is logged out", () => {
+    it("prompt user to sing in", () => {
+      const wrapper = mount(MainNav, {
+        data() {
+          return {
+            isLoggedIn: false,
+          };
+        },
+      });
+
+      const loginButton = wrapper.findComponent({ name: "ActionButton" });
+      const profileImage = wrapper.findComponent({ name: "ProfileImage" });
+
+      expect(loginButton.exists()).toBe(true);
+      expect(profileImage.exists()).toBe(false);
+    });
+  });
+
+  describe("When user is logged in", () => {
+    it("prompt user to sing in", () => {
+      const wrapper = mount(MainNav, {
+        data() {
+          return {
+            isLoggedIn: true,
+          };
+        },
+      });
+
+      const loginButton = wrapper.findComponent({ name: "ActionButton" });
+      const profileImage = wrapper.findComponent({ name: "ProfileImage" });
+
+      expect(loginButton.exists()).toBe(false);
+      expect(profileImage.exists()).toBe(true);
+    });
+  });
 });
