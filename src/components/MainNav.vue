@@ -24,7 +24,12 @@
 
         <div class="flex items-center h-full ml-auto">
           <profile-image v-if="isLoggedIn" data-test="profile-image" />
-          <action-button v-else data-test="action-button" @click="login" />
+          <action-button
+            v-else
+            data-test="action-button"
+            text="Sign In"
+            @click="login"
+          />
         </div>
       </div>
     </div>
